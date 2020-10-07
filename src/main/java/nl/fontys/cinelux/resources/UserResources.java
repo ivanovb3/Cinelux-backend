@@ -8,11 +8,10 @@ import nl.fontys.cinelux.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -20,10 +19,50 @@ public class UserResources {
     @Autowired
     private UserRepository userRepository;
 
-    FakeData fakeData = new FakeData();
-
-    @GetMapping
+    @GetMapping("/all")
     public Iterable<User> getUsers() {
            return userRepository.findAll();
+    }
+
+    //Always returns object even if null
+    /*@GetMapping
+    public Optional<User> getUserById(@RequestParam long id){
+        return userRepository.findById(id);
+    } */
+
+    @GetMapping
+    public User getUserById(@RequestParam long id){
+        if(userRepository.existsById(id)){
+        return userRepository.findById(id).get();
         }
+        return null;
+
+    }
+
+    @PostMapping("/add")
+    public @ResponseBody String addNewUser(@RequestBody User user){
+        userRepository.save(user);
+        return "Successfully added user " + user.getName();
+    }
+    @DeleteMapping("/delete")
+    public @ResponseBody String deleteUser(@RequestParam long id){
+
+        if(userRepository.existsById(id)){
+        userRepository.deleteById(id);
+        return "Deleted user ";
+        }
+        return "User does not exist";
+    }
+    @PutMapping("/update")
+    public @ResponseBody String updateUser(@RequestBody User user){
+        User updatedUser = userRepository.findById(user.getId()).get();
+        updatedUser.setName(user.getName());
+        updatedUser.setPassword(user.getPassword());
+        updatedUser.setEmail(user.getEmail());
+        userRepository.save(updatedUser);
+        return "Successfully updated person!";
+    }
+
+
+
 }

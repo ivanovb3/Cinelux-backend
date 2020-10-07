@@ -2,6 +2,7 @@ package nl.fontys.cinelux.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity(name = "USERS")
 public class User {
@@ -17,6 +18,10 @@ public class User {
     @Email
     @Column(name = "user_email", nullable = false)
     private String email;
+    @Column(name = "is_admin", nullable = false)
+    private int is_admin;
+    @OneToMany(mappedBy = "user")
+    private List<Ticket> tickets;
 
     public long getId() {
         return id;
@@ -48,6 +53,22 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(int is_admin) {
+        this.is_admin = is_admin;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     public User(){}

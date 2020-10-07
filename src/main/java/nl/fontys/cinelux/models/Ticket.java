@@ -1,34 +1,76 @@
 package nl.fontys.cinelux.models;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+
+@Entity(name="TICKETS")
 public class Ticket {
-    private int ticketNumber;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ticket_id")
+    private long id;
+    @Column(name = "ticket_number", nullable = false)
+    private long ticketNumber;
+    @ManyToOne(optional = false, targetEntity = User.class)
+    @JoinColumn(name = "buyer_id", referencedColumnName = "user_id")
     private User user;
+    @ManyToOne(optional = false, targetEntity = Movie.class)
+    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+    private Movie movie;
+    @Column(name = "seat", nullable = false)
     private String seat;
 
+    public long getId() {
+        return id;
+    }
 
-    public Ticket(User user, String seat){
-        this.seat = seat;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getTicketNumber() {
+        return ticketNumber;
+    }
+
+    public void setTicketNumber(long ticketNumber) {
+        this.ticketNumber = ticketNumber;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public void GenerateTicketNumber(){
+    public Movie getMovie() {
+        return movie;
+    }
 
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
-    public User GetUser(){
-        return this.user;
+
+    public String getSeat() {
+        return seat;
     }
-    public String GetSeat(){
-        return this.seat;
-    }
-    public void SetSeat(String seat){
+
+    public void setSeat(String seat) {
         this.seat = seat;
     }
 
+    public Ticket() {    }
 
     @Override
     public String toString() {
-        return "User{" +
-                this.user.toString() +
+        return "Ticket{" +
+                "id=" + id +
+                ", ticketNumber=" + ticketNumber +
+                ", user=" + user +
+                ", movie=" + movie +
+                ", seat='" + seat + '\'' +
                 '}';
     }
 }
