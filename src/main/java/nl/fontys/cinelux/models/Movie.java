@@ -13,12 +13,10 @@ public class Movie {
     private long id;
     @Column(name = "movie_name", nullable = false)
     private String name;
-    @Column(name = "projection_date", nullable = false)
-    private Date date;
     @Column(name = "movie_picture", nullable = false)
     private String picture;
     @OneToMany(mappedBy = "movie")
-    private List<Ticket> tickets;
+    private List<Projection> projections;
 
     public long getId() {
         return id;
@@ -36,14 +34,6 @@ public class Movie {
         this.name = name;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String getPicture() {
         return picture;
     }
@@ -52,12 +42,12 @@ public class Movie {
         this.picture = picture;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Projection> getProjections() {
+        return projections;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setProjections(List<Projection> projections) {
+        this.projections = projections;
     }
 
     public Movie() {    }
@@ -67,9 +57,8 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", date=" + date +
                 ", picture='" + picture + '\'' +
-                ", tickets=" + tickets +
+                ", projections=" + projections +
                 '}';
     }
 }

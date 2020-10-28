@@ -15,9 +15,9 @@ public class Ticket {
     @ManyToOne(optional = false, targetEntity = User.class)
     @JoinColumn(name = "buyer_id", referencedColumnName = "user_id")
     private User user;
-    @ManyToOne(optional = false, targetEntity = Movie.class)
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
-    private Movie movie;
+    @ManyToOne(optional = false, targetEntity = Projection.class)
+    @JoinColumn(name = "projection_id", referencedColumnName = "projection_id")
+    private Projection projection;
     @Column(name = "seat", nullable = false)
     private String seat;
 
@@ -45,12 +45,12 @@ public class Ticket {
         this.user = user;
     }
 
-    public Movie getMovie() {
-        return movie;
+    public Projection getProjection() {
+        return projection;
     }
 
-    public void setMovie(Movie movie) {
-        this.movie = movie;
+    public void setProjection(Projection projection) {
+        this.projection = projection;
     }
 
     public String getSeat() {
@@ -69,7 +69,7 @@ public class Ticket {
                 "id=" + id +
                 ", ticketNumber=" + ticketNumber +
                 ", user=" + user +
-                ", movie=" + movie +
+                ", projection=" + projection +
                 ", seat='" + seat + '\'' +
                 '}';
     }

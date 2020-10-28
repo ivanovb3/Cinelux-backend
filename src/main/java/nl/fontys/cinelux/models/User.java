@@ -71,7 +71,7 @@ public class User {
         this.tickets = tickets;
     }
 
-    public User(){}
+    public User() {}
 
     @Override
     public String toString() {

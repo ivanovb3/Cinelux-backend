@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
+
 @RestController
 @RequestMapping("/users")
 public class UserResources {
@@ -23,6 +25,11 @@ public class UserResources {
     public Iterable<User> getUsers() {
            return userRepository.findAll();
     }
+
+    /*@GetMapping("/login")
+    public User loginUser(@RequestParam String email, @RequestParam String password){
+        if(userRepository)
+    } */
 
     //Always returns object even if null
     /*@GetMapping
