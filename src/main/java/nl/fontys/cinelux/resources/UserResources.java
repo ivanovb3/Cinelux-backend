@@ -70,6 +70,12 @@ public class UserResources {
         return "Successfully updated person!";
     }
 
+    @GetMapping("/login")
+    public User logInUser(@RequestParam String email, String password){
+        User user = userRepository.findByEmailAndPassword(email, password);
+        return user;
+    }
+
 
 
 }
