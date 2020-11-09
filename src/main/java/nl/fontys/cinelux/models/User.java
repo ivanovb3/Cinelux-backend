@@ -73,6 +73,12 @@ public class User {
 
     public User() {}
 
+    public User(String name, String password, String email){
+        this.setName(name);
+        this.setPassword(password);
+        this.setEmail(email);
+    }
+
     @Override
     public String toString() {
         return "User{" +

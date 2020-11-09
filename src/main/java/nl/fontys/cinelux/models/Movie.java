@@ -1,7 +1,6 @@
 package nl.fontys.cinelux.models;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity(name = "MOVIES")
