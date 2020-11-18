@@ -1,6 +1,10 @@
 package nl.fontys.cinelux.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,13 +14,29 @@ public class Projection {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "projection_id")
     private long id;
+
+    @JsonIgnoreProperties("projections")
     @ManyToOne(optional = false, targetEntity = Movie.class)
-    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")
+    @JoinColumn(name = "movie_id", referencedColumnName = "movie_id")     //
     private Movie movie;
+
+
     @OneToMany(mappedBy = "projection")
     private List<Ticket> tickets;
-    @Column(name = "projection_date", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date date;
+
+    @JsonFormat(pattern="HH:mm:ss")
+    @Temporal(TemporalType.TIME)
+    private Date time;
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 
     public long getId() {
         return id;

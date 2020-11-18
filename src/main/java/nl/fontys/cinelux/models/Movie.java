@@ -10,11 +10,14 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id")
     private long id;
-    @Column(name = "movie_name", nullable = false)
+    @Column(name = "movie_name")    //, nullable = false
     private String name;
-    @Column(name = "movie_picture", nullable = false)
+    @Column(name = "movie_picture")    //
     private String picture;
-    @OneToMany(mappedBy = "movie")
+    @Column(name = "movie_runtime")    //
+    private int runtime;
+
+    @OneToMany(mappedBy = "movie")  // fetch = FetchType.LAZY,  cascade = CascadeType.ALL
     private List<Projection> projections;
 
     public long getId() {
@@ -48,6 +51,11 @@ public class Movie {
     public void setProjections(List<Projection> projections) {
         this.projections = projections;
     }
+
+    public int getRuntime() { return runtime;    }
+
+    public void setRuntime(int runtime) {  this.runtime = runtime;  }
+
 
     public Movie() {    }
 
