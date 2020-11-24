@@ -18,34 +18,38 @@ public class ProjectionResources {
     private ProjectionRepository projectionRepository;
 
     @GetMapping("/all")
-    public Iterable<Projection> getProjections(){
+    public Iterable<Projection> getProjections() {
         return projectionRepository.findAll();
     }
 
     @GetMapping
-    public Projection getProjectionById(@RequestParam long id){
-        if(projectionRepository.existsById(id)){
+    public Projection getProjectionById(@RequestParam long id) {
+        if (projectionRepository.existsById(id)) {
             return projectionRepository.findById(id).get();
         }
         return null;
 
     }
+
     @GetMapping("/findProjections")
-    public List<Projection> getProjectionsByDateAndMovie(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, Movie movie){
+    public List<Projection> getProjectionsByDateAndMovie(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, Movie movie) {
         //for(int i = 0; i < projectionRepository.findByDate(date))
         return projectionRepository.findByDateAndMovie(date, movie);
         //return null;
 
     }
+
     @GetMapping("/findByDate")
-    public List<Projection> getProjectionsByDate(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date){
+    public List<Projection> getProjectionsByDate(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
         //for(int i = 0; i < projectionRepository.findByDate(date))
         return projectionRepository.findByDate(date);
         //return null;
 
     }
+
     @PostMapping("/add")
-    public @ResponseBody String addNewProjection(@RequestBody Projection projection){
+    public @ResponseBody
+    String addNewProjection(@RequestBody Projection projection) {
         projectionRepository.save(projection);
         return "Successfully added projection for " + projection.getMovie();
     }

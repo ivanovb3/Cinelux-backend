@@ -15,7 +15,7 @@ public class TicketResources {
     private TicketRepository ticketRepository;
 
     @GetMapping
-    public Iterable<Ticket> getTickets(){
+    public Iterable<Ticket> getTickets() {
         return ticketRepository.findAll();
     }
 }

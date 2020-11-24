@@ -20,6 +20,9 @@ public class Movie {
     @OneToMany(mappedBy = "movie")  // fetch = FetchType.LAZY,  cascade = CascadeType.ALL
     private List<Projection> projections;
 
+    public Movie() {
+    }
+
     public long getId() {
         return id;
     }
@@ -52,12 +55,13 @@ public class Movie {
         this.projections = projections;
     }
 
-    public int getRuntime() { return runtime;    }
+    public int getRuntime() {
+        return runtime;
+    }
 
-    public void setRuntime(int runtime) {  this.runtime = runtime;  }
-
-
-    public Movie() {    }
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
 
     @Override
     public String toString() {

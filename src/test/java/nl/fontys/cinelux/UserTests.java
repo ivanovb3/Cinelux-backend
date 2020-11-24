@@ -11,7 +11,7 @@ public class UserTests {
     public void userNameTest(){
         String expectedName = "Rostislav";
         User user = new User(expectedName, "password", "rostislav@gmail.com");
-        String actualName = user.getName();
+        String actualName = user.getUsername();
 
         assertEquals(expectedName, actualName);
     }
@@ -22,9 +22,9 @@ public class UserTests {
 
         User user = mock(User.class);
 
-        when(user.getName()).thenReturn(expectedName);
+        when(user.getUsername()).thenReturn(expectedName);
 
-        String actualName = user.getName();
+        String actualName = user.getUsername();
 
         assertEquals(expectedName, actualName);
 

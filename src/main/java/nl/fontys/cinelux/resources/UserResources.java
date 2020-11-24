@@ -15,7 +15,7 @@ public class UserResources {
 
     @GetMapping("/all")
     public Iterable<User> getUsers() {
-           return userRepository.findAll();
+        return userRepository.findAll();
     }
 
     /*@GetMapping("/login")
@@ -30,32 +30,37 @@ public class UserResources {
     } */
 
     @GetMapping
-    public User getUserById(@RequestParam long id){
-        if(userRepository.existsById(id)){
-        return userRepository.findById(id).get();
+    public User getUserById(@RequestParam long id) {
+        if (userRepository.existsById(id)) {
+            return userRepository.findById(id).get();
         }
         return null;
 
     }
 
     @PostMapping("/add")
-    public @ResponseBody String addNewUser(@RequestBody User user){
+    public @ResponseBody
+    String addNewUser(@RequestBody User user) {
         userRepository.save(user);
-        return "Successfully added user " + user.getName();
+        return "Successfully added user " + user.getUsername();
     }
-    @DeleteMapping("/delete")
-    public @ResponseBody String deleteUser(@RequestParam long id){
 
-        if(userRepository.existsById(id)){
-        userRepository.deleteById(id);
-        return "Deleted user ";
+    @DeleteMapping("/delete")
+    public @ResponseBody
+    String deleteUser(@RequestParam long id) {
+
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+            return "Deleted user ";
         }
         return "User does not exist";
     }
+
     @PutMapping("/update")
-    public @ResponseBody String updateUser(@RequestBody User user){
+    public @ResponseBody
+    String updateUser(@RequestBody User user) {
         User updatedUser = userRepository.findById(user.getId()).get();
-        updatedUser.setName(user.getName());
+        updatedUser.setUsername(user.getUsername());
         updatedUser.setPassword(user.getPassword());
         updatedUser.setEmail(user.getEmail());
         userRepository.save(updatedUser);
@@ -63,11 +68,10 @@ public class UserResources {
     }
 
     @GetMapping("/login")
-    public User logInUser(@RequestParam String email, String password){
+    public User logInUser(@RequestParam String email, String password) {
         User user = userRepository.findByEmailAndPassword(email, password);
         return user;
     }
-
 
 
 }

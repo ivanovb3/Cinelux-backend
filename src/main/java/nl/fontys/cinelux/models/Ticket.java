@@ -3,7 +3,7 @@ package nl.fontys.cinelux.models;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
-@Entity(name="TICKETS")
+@Entity(name = "TICKETS")
 public class Ticket {
 
     @Id
@@ -13,13 +13,16 @@ public class Ticket {
     @Column(name = "ticket_number", nullable = false)
     private long ticketNumber;
     @ManyToOne(optional = false, targetEntity = User.class)
-    @JoinColumn(name = "buyer_id", referencedColumnName = "user_id")
+    @JoinColumn(name = "buyer_id", referencedColumnName = "id")
     private User user;
     @ManyToOne(optional = false, targetEntity = Projection.class)
     @JoinColumn(name = "projection_id", referencedColumnName = "projection_id")
     private Projection projection;
     @Column(name = "seat", nullable = false)
     private String seat;
+
+    public Ticket() {
+    }
 
     public long getId() {
         return id;
@@ -60,8 +63,6 @@ public class Ticket {
     public void setSeat(String seat) {
         this.seat = seat;
     }
-
-    public Ticket() {    }
 
     @Override
     public String toString() {

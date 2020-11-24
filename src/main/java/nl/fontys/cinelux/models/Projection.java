@@ -26,9 +26,12 @@ public class Projection {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    @JsonFormat(pattern="HH:mm:ss")
+    @JsonFormat(pattern = "HH:mm:ss")
     @Temporal(TemporalType.TIME)
     private Date time;
+
+    public Projection() {
+    }
 
     public Date getTime() {
         return time;
@@ -69,8 +72,6 @@ public class Projection {
     public void setDate(Date date) {
         this.date = date;
     }
-
-    public Projection() {    }
 
     @Override
     public String toString() {

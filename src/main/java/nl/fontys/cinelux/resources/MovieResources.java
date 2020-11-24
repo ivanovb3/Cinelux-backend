@@ -14,19 +14,22 @@ public class MovieResources {
     private MovieRepository movieRepository;
 
     @GetMapping("/all")
-    private Iterable<Movie> getMovies(){
+    private Iterable<Movie> getMovies() {
         return movieRepository.findAll();
     }
+
     @GetMapping
-    public Movie getMovieById(@RequestParam long id){
-        if(movieRepository.existsById(id)){
+    public Movie getMovieById(@RequestParam long id) {
+        if (movieRepository.existsById(id)) {
             return movieRepository.findById(id).get();
         }
         return null;
 
     }
+
     @PostMapping("/add")
-    public @ResponseBody String addNewMovie(@RequestBody Movie movie){
+    public @ResponseBody
+    String addNewMovie(@RequestBody Movie movie) {
         movieRepository.save(movie);
         return "Successfully added movie " + movie.getName();
     }
