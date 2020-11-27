@@ -33,17 +33,13 @@ public class ProjectionResources {
 
     @GetMapping("/findProjections")
     public List<Projection> getProjectionsByDateAndMovie(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, Movie movie) {
-        //for(int i = 0; i < projectionRepository.findByDate(date))
         return projectionRepository.findByDateAndMovie(date, movie);
-        //return null;
 
     }
 
     @GetMapping("/findByDate")
     public List<Projection> getProjectionsByDate(@RequestParam(value = "date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        //for(int i = 0; i < projectionRepository.findByDate(date))
         return projectionRepository.findByDate(date);
-        //return null;
 
     }
 
