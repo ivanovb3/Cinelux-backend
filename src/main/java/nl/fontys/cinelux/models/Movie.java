@@ -12,6 +12,7 @@ public class Movie {
     private long id;
     @Column(name = "movie_name")    //, nullable = false
     private String name;
+    @Lob
     @Column(name = "movie_picture")    //
     private String picture;
     @Column(name = "movie_runtime")    //

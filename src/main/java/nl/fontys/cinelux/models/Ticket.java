@@ -1,5 +1,7 @@
 package nl.fontys.cinelux.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 
@@ -12,14 +14,18 @@ public class Ticket {
     private long id;
     @Column(name = "ticket_number", nullable = false)
     private long ticketNumber;
+
+    @JsonIgnoreProperties("tickets")
     @ManyToOne(optional = false, targetEntity = User.class)
     @JoinColumn(name = "buyer_id", referencedColumnName = "id")
     private User user;
+
+    @JsonIgnoreProperties("tickets")
     @ManyToOne(optional = false, targetEntity = Projection.class)
     @JoinColumn(name = "projection_id", referencedColumnName = "projection_id")
     private Projection projection;
     @Column(name = "seat", nullable = false)
-    private String seat;
+    private int seat;
 
     public Ticket() {
     }
@@ -56,11 +62,11 @@ public class Ticket {
         this.projection = projection;
     }
 
-    public String getSeat() {
+    public int getSeat() {
         return seat;
     }
 
-    public void setSeat(String seat) {
+    public void setSeat(int seat) {
         this.seat = seat;
     }
 

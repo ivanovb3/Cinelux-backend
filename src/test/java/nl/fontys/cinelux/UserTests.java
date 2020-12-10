@@ -6,17 +6,15 @@ import nl.fontys.cinelux.models.User;
 import nl.fontys.cinelux.resources.UserResources;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.mockito.Mockito.*;
 
 
-public class UserTests {
+class UserTests {
     @Test
-    public void userNameTest(){
+    void userNameTest(){
         String expectedName = "Rostislav";
         User user = new User(expectedName, "password", "rostislav@gmail.com");
         String actualName = user.getUsername();
@@ -25,10 +23,12 @@ public class UserTests {
     }
 
     @Test
-    public void mockitoUserTest(){
+    void mockitoUserTest(){
         String expectedName = "Rostislav";
 
         User user = mock(User.class);
+
+        user.setUsername(expectedName);
 
         when(user.getUsername()).thenReturn(expectedName);
 
@@ -38,7 +38,7 @@ public class UserTests {
     }
 
     @Test
-    public void registerUserTest(){
+    void registerUserTest(){
         User expectedUser = new User("Rostislav", "123456", "rosti.rosenov@gmail.com");
         UserResources userResources = mock(UserResources.class);
         //User user = mock(User.class);
@@ -50,7 +50,7 @@ public class UserTests {
     }
 
     @Test
-    public void logInUserTest(){
+    void logInUserTest(){
         User expectedUser = new User("Rostislav", "123456", "rosti.rosenov@gmail.com");
         UserResources userResources = mock(UserResources.class);
 
@@ -60,7 +60,7 @@ public class UserTests {
     }
 
     @Test
-    public void logInUserTest_withWrongCredentials(){
+    void logInUserTest_withWrongCredentials(){
         User expectedUser = new User("Rostislav", "123456", "rosti.rosenov@gmail.com");
         UserResources userResources = mock(UserResources.class);
 

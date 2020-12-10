@@ -14,7 +14,7 @@ public class MovieResources {
     private MovieRepository movieRepository;
 
     @GetMapping("/all")
-    private Iterable<Movie> getMovies() {
+    public Iterable<Movie> getMovies() {
         return movieRepository.findAll();
     }
 
