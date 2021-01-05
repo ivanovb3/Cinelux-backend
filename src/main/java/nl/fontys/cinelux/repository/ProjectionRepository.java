@@ -13,4 +13,6 @@ public interface ProjectionRepository extends CrudRepository<Projection, Long> {
     List<Projection> findByDateAndMovie(Date date, Movie movie);
 
     List<Projection> findByDate(Date date);
+
+    List<Projection> findAll();
 }

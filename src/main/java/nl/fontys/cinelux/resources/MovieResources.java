@@ -33,4 +33,10 @@ public class MovieResources {
         movieRepository.save(movie);
         return "Successfully added movie " + movie.getName();
     }
+    @DeleteMapping("/delete")
+    public @ResponseBody
+    String deleteMovie(@RequestParam long id){
+        movieRepository.deleteById(id);
+        return "Successfully deleted movie";
+    }
 }

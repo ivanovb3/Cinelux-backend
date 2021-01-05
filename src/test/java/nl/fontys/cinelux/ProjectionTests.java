@@ -99,7 +99,7 @@ class ProjectionTests {
         Projection p1 = mock(Projection.class);
         List<Projection> projections = new ArrayList<Projection>();
         projections.add(p1);
-        Date date = mock(Date.class);
+        Date date = mock(java.sql.Date.class);
         when(pr.getProjectionsByDate(date)).thenReturn(projections);
         List<Projection> actualProjections = pr.getProjectionsByDate(date);
         assertEquals(projections, actualProjections);
