@@ -1,0 +1,48 @@
+.movieWrapper{
+    width: 25%;
+    padding: 1%;   
+    float:left;
+    /* margin-bottom: 2%; */
+    /* height: 50%; */
+}
+.movieWrapperContent :hover{
+    color: #f7941e !important;
+    /* backdrop-filter: blur(1px); */
+}
+.wrapper{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 4%;
+    display: flex;
+    justify-content: center;           
+     flex-wrap: wrap; 
+}
+.imageNow{
+    border-radius: 8px;
+    width: 100%;
+    height: 390px;  
+    opacity: 1;  
+    transition: .7s ease;
+}
+.imageNow:hover{
+    opacity: 0.5; 
+}
+.image:hover{
+    color: #f7941e !important;
+}
+.movieName{
+    font-family: Stencil Std, fantasy;
+    font-weight: 300;
+    font-size: 1.3rem !important;
+    color: #fff; 
+
+}
+body{
+    background-color: #191a1f !important;
+}
+
+.carouselImage{
+    height: 500px;
+}
