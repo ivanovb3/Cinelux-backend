@@ -1,26 +1,37 @@
 stages:
-  - build
-  - test
-  - sonarqube
+#  - build
+#  - test
+#  - sonarqube
+  - deploy
+#
+#build:
+#  stage: build
+#  script:
+#    - ./gradlew assemble
+#
+#test:
+#  stage: test
+#  dependencies:
+#    - build
+#  script:
+#    - ./gradlew test
+#
+#sonarqube:
+#  stage: sonarqube
+#  dependencies:
+#    - test
+#  script:
+#    - ./gradlew sonarqube
 
-build:
-  stage: build
-  script:
-    - ./gradlew assemble
-
-test:
-  stage: test
+deploy:
+  stage: deploy
   dependencies:
-    - build
+#    -test
+  before_script:
+    -./gradlew assemble
   script:
-    - ./gradlew test
-
-sonarqube:
-  stage: sonarqube
-  dependencies:
-    - test
-  script:
-    - ./gradlew sonarqube
+    - docker build -t cinelux-app:latest .
+    - docker run --name cinelux-app-container --rm -dp 8080:8080 cinelux-app
 
 after_script:
   - echo "End CI"
