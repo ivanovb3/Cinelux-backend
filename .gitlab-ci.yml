@@ -25,10 +25,10 @@ stages:
 
 deploy:
   stage: deploy
-  dependencies:
+#  dependencies:
 #    -test
   before_script:
-    -./gradlew assemble
+    - ./gradlew assemble
   script:
     - docker build -t cinelux-app:latest .
     - docker run --name cinelux-app-container --rm -dp 8080:8080 cinelux-app
