@@ -58,13 +58,13 @@ class MovieTests {
         List<Projection> actualProjections = movie.getProjections();
         assertEquals(expectedProjections, actualProjections);
     }
-//    @Test
-//    void MovieToStringTest(){
-//        Movie movie = mock(Movie.class);
-//        when(movie.toString()).thenReturn("Movie");
-//        String actualString = movie.toString();
-//        assertEquals("Movie", actualString);
-//    }
+    @Test
+    void MovieToStringTest(){
+        Movie movie = mock(Movie.class);
+        when(movie.toString()).thenReturn("Movie");
+        String actualString = movie.toString();
+        assertEquals("Movie", actualString);
+    }
 
     @Test
     void GetAllMoviesTest(){
