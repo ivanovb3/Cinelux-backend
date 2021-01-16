@@ -8,7 +8,6 @@ build:
   stage: build
   script:
     - ./gradlew assemble
-
 test:
   stage: test
   dependencies:
@@ -26,7 +25,7 @@ sonarqube:
 deploy:
   stage: deploy
   dependencies:
-    -test
+    - test
   before_script:
     - ./gradlew assemble
   script:
