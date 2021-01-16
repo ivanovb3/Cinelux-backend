@@ -1,32 +1,32 @@
 stages:
-#  - build
-#  - test
-#  - sonarqube
+  - build
+  - test
+  - sonarqube
   - deploy
-#
-#build:
-#  stage: build
-#  script:
-#    - ./gradlew assemble
-#
-#test:
-#  stage: test
-#  dependencies:
-#    - build
-#  script:
-#    - ./gradlew test
-#
-#sonarqube:
-#  stage: sonarqube
-#  dependencies:
-#    - test
-#  script:
-#    - ./gradlew sonarqube
+
+build:
+  stage: build
+  script:
+    - ./gradlew assemble
+
+test:
+  stage: test
+  dependencies:
+    - build
+  script:
+    - ./gradlew test
+
+sonarqube:
+  stage: sonarqube
+  dependencies:
+    - test
+  script:
+    - ./gradlew sonarqube
 
 deploy:
   stage: deploy
-#  dependencies:
-#    -test
+  dependencies:
+    -test
   before_script:
     - ./gradlew assemble
   script:
