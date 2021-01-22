@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @CrossOrigin("*")  //http://localhost:3000
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/api/tickets")
 public class TicketResources {
     @Autowired
     private TicketRepository ticketRepository;

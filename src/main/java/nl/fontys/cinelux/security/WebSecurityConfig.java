@@ -68,10 +68,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers("/movies/**").permitAll()
                 .antMatchers("/projections/**").permitAll()
-                .antMatchers("/tickets/**").permitAll()
+                .antMatchers("/api/tickets/**").permitAll()
                 .antMatchers("/users/**").permitAll()
-//                .antMatchers("/tickets/findByUser").access("hasRole('ROLE_USER')")
+                .antMatchers("/socket/**").permitAll()
+                .antMatchers("/topic/new/seats").permitAll()
+                .antMatchers("/app/edit/seats").permitAll()
                 .anyRequest().authenticated();
+
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
