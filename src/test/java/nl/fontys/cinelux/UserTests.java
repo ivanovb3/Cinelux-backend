@@ -89,7 +89,7 @@ class UserTests {
         when(userResources.addNewUser(expectedUser)).thenReturn("Successfully added user " + expectedUser.getUsername());
 
         String success = userResources.addNewUser(expectedUser);
-        assertEquals(success,"Successfully added user Rostislav");
+        assertEquals("Successfully added user Rostislav",success);
     }
 
 

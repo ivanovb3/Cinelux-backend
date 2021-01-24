@@ -58,7 +58,7 @@ public class TicketResources {
     public Iterable<Ticket> getTicketsByUser(@RequestParam User u, String request) {
         List<Ticket> tickets = ticketRepository.findByUser(u);
         if (!tickets.isEmpty()) {
-            if (tickets.size() != 0) {
+            if (!tickets.isEmpty()) {
                 if (tickets.get(0).getUser().getUsername().equals(jwtUtils.getUserNameFromJwtToken(request))) {
                     return tickets;
                 } else {
