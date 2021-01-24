@@ -3,16 +3,11 @@ package nl.fontys.cinelux.resources;
 import nl.fontys.cinelux.models.Movie;
 import nl.fontys.cinelux.models.Projection;
 import nl.fontys.cinelux.repository.ProjectionRepository;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
-import javax.swing.text.html.Option;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

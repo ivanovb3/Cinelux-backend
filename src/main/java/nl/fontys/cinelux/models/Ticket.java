@@ -3,7 +3,6 @@ package nl.fontys.cinelux.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 
 @Entity(name = "TICKETS")
 public class Ticket {

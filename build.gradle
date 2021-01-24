@@ -16,6 +16,7 @@ sourceCompatibility = '1.8'
 sonarqube {
     properties {
         property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.coverage.jacoco", "${buildDir}/jacoco/test/index.html"
     }
 }
 
@@ -56,6 +57,9 @@ test {
 }
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
+    reports {
+        xml.enabled true
+    }
 }
 jacoco {
     toolVersion = "0.8.5"
