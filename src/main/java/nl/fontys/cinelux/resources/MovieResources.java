@@ -3,8 +3,9 @@ package nl.fontys.cinelux.resources;
 import nl.fontys.cinelux.models.Movie;
 import nl.fontys.cinelux.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")    //http://localhost:3000
 @RestController
@@ -22,7 +23,11 @@ public class MovieResources {
     @GetMapping
     public Movie getMovieById(@RequestParam long id) {
         if (movieRepository.existsById(id)) {
-            return movieRepository.findById(id).get();
+            Optional<Movie> m = movieRepository.findById(id);
+            if (m.isPresent()) {
+                return m.get();
+            }
+            return null;
         }
         return null;
 
@@ -34,9 +39,10 @@ public class MovieResources {
         movieRepository.save(movie);
         return "Successfully added movie " + movie.getName();
     }
+
     @DeleteMapping("/delete")
     public @ResponseBody
-    String deleteMovie(@RequestParam long id){
+    String deleteMovie(@RequestParam long id) {
         movieRepository.deleteById(id);
         return "Successfully deleted movie";
     }

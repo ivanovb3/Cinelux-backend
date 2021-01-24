@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class MessageMapper {
     @MessageMapping("/new")
     @SendTo("/topic/edit")
-    public String GetSeat(String seat){
+    public String getSeat(String seat){
         return seat;
     }
 }

@@ -92,24 +92,5 @@ class UserTests {
         assertEquals(success,"Successfully added user Rostislav");
     }
 
-    @Test
-    void logInUserTest(){
-        User expectedUser = new User("Rostislav", "123456", "rosti.rosenov@gmail.com");
-        UserResources userResources = mock(UserResources.class);
-
-        when(userResources.logInUser(expectedUser.getEmail(), expectedUser.getPassword())).thenReturn(expectedUser);
-        User actualUser = userResources.logInUser("rosti.rosenov@gmail.com", "123456");
-        assertEquals(expectedUser, actualUser);
-    }
-
-    @Test
-    void logInUserTest_withWrongCredentials(){
-        User expectedUser = new User("Rostislav", "123456", "rosti.rosenov@gmail.com");
-        UserResources userResources = mock(UserResources.class);
-        when(userResources.logInUser(expectedUser.getEmail(), expectedUser.getPassword())).thenReturn(expectedUser);
-        User actualUser = userResources.logInUser("rosti.rosenoov@gmail.com", "123456");
-        assertNotEquals(expectedUser, actualUser);
-    }
-
 
 }

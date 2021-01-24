@@ -54,10 +54,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//    @Override
-//    public void configure(WebSecurity web) throws Exception{
-//        web.ignoring().antMatchers("/**");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception{
+       web.ignoring().antMatchers("/**");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

@@ -5,6 +5,8 @@ import nl.fontys.cinelux.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin(origins = "*")   //http://localhost:3000
 
 @RestController
@@ -18,21 +20,14 @@ public class UserResources {
         return userRepository.findAll();
     }
 
-    /*@GetMapping("/login")
-    public User loginUser(@RequestParam String email, @RequestParam String password){
-        if(userRepository)
-    } */
-
-    //Always returns object even if null
-    /*@GetMapping
-    public Optional<User> getUserById(@RequestParam long id){
-        return userRepository.findById(id);
-    } */
-
     @GetMapping
     public User getUserById(@RequestParam long id) {
         if (userRepository.existsById(id)) {
-            return userRepository.findById(id).get();
+            Optional<User> u = userRepository.findById(id);
+            if (u.isPresent()) {
+                return u.get();
+            }
+            return null;
         }
         return null;
 
@@ -59,18 +54,17 @@ public class UserResources {
     @PutMapping("/update")
     public @ResponseBody
     String updateUser(@RequestBody User user) {
-        User updatedUser = userRepository.findById(user.getId()).get();
-        updatedUser.setUsername(user.getUsername());
-        updatedUser.setPassword(user.getPassword());
-        updatedUser.setEmail(user.getEmail());
-        userRepository.save(updatedUser);
-        return "Successfully updated person!";
-    }
-
-    @GetMapping("api/login")
-    public User logInUser(@RequestParam String email, String password) {
-        User user = userRepository.findByEmailAndPassword(email, password);
-        return user;
+        Optional<User> u = userRepository.findById(user.getId());
+        if (u.isPresent()) {
+            User updatedUser = u.get();
+            updatedUser.setUsername(user.getUsername());
+            updatedUser.setPassword(user.getPassword());
+            updatedUser.setEmail(user.getEmail());
+            userRepository.save(updatedUser);
+            return "Successfully updated person!";
+        } else {
+            return null;
+        }
     }
 
 

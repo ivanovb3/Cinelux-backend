@@ -3,16 +3,19 @@ package nl.fontys.cinelux.resources;
 import nl.fontys.cinelux.models.Movie;
 import nl.fontys.cinelux.models.Projection;
 import nl.fontys.cinelux.repository.ProjectionRepository;
+import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.swing.text.html.Option;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")  //http://localhost:3000
 @RestController
@@ -22,19 +25,6 @@ public class ProjectionResources {
     @Autowired
     private ProjectionRepository projectionRepository;
 
-    /*@PostConstruct
-    void DeleteOldProjections(){
-        List<Projection> projections = projectionRepository.findAll();
-        LocalDate date = LocalDate.now(); // Gets the current date
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        Date current = Date.valueOf(date.format(formatter));
-        for(int i = 0; i< projections.size(); i++){
-            if(projections.get(i).getDate().before(current)){
-                projectionRepository.deleteById(projections.get(i).getId());
-            }
-        }
-
-    } */
     @GetMapping("/all")
     public Iterable<Projection> getProjections() {
         return projectionRepository.findAll();
@@ -43,7 +33,11 @@ public class ProjectionResources {
     @GetMapping
     public Projection getProjectionById(@RequestParam long id) {
         if (projectionRepository.existsById(id)) {
-            return projectionRepository.findById(id).get();
+            Optional<Projection> p = projectionRepository.findById(id);
+            if (p.isPresent()) {
+                return p.get();
+            }
+            return null;
         }
         return null;
 
